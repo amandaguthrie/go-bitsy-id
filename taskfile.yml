@@ -1,0 +1,60 @@
+version: '3'
+
+tasks:
+  audit:
+    desc: Run multiple audit tasks for CI
+    cmds:
+      - task: 'verify'
+  lint:
+    desc: Run multiple linting tasks for CI
+    cmds:
+      - task: 'vet'
+      - task: 'staticcheck/install'
+      - task: 'staticcheck/run'
+      - task: 'golint/install'
+      - task: 'golint/run'
+  benchmark:
+    desc: Run tests with benchmark
+    cmds:
+      - go test -v -bench . -count=1
+  coverage:
+    desc: Get test coverage
+    cmds:
+      - go test -coverprofile=c.out
+      - go tool cover -html c.out -o cover.html
+  format:
+    desc: Go Format
+    cmds:
+      - go fmt ./...
+  golint/install:
+    internal: true
+    desc: Install GoLint
+    cmds:
+      - go install golang.org/x/lint/golint@latest
+  golint/run:
+    internal: true
+    desc: Run GoLint
+    cmds:
+      - golint ./...
+  staticcheck/install:
+    internal: true
+    desc: Install staticcheck
+    cmds:
+      - go install honnef.co/go/tools/cmd/staticcheck@latest
+  staticcheck/run:
+    internal: true
+    desc: Run staticcheck
+    cmds:
+      - staticcheck ./...
+  test:
+    desc: Run tests without benchmark
+    cmds:
+      - go test -v . -count=1
+  verify:
+    desc: Verify dependencies
+    cmds:
+      - go mod verify
+  vet:
+    desc: Vet
+    cmds:
+      - go vet ./...

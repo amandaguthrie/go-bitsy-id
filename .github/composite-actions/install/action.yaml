@@ -1,0 +1,25 @@
+name: 'Install'
+description: 'Set up Task, Go, and Run Install'
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+      with:
+        path: ${{ github.workspace}}/src/github.com/${{ github.repository}}
+
+    - name: Install Task
+      uses: arduino/setup-task@v2
+      with:
+        version: 3.x
+
+    - name: Install Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: 1.22
+
+    - name: Install dependencies
+      shell: bash
+      run: |
+        go get -t ./...
