@@ -16,6 +16,11 @@ jobs:
   audit:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          path: ${{ github.workspace}}/src/github.com/${{ github.repository}}
+
       - name: Install
         uses: ./.github/composite-actions/install
 
@@ -25,6 +30,11 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          path: ${{ github.workspace}}/src/github.com/${{ github.repository}}
+
       - name: Install
         uses: ./.github/composite-actions/install
 
@@ -35,6 +45,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          path: ${{ github.workspace}}/src/github.com/${{ github.repository}}
+
       - name: Install
         uses: ./.github/composite-actions/install
 

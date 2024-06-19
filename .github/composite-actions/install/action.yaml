@@ -4,10 +4,6 @@ description: 'Set up Task, Go, and Run Install'
 runs:
   using: composite
   steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
-      with:
-        path: ${{ github.workspace}}/src/github.com/${{ github.repository}}
 
     - name: Install Task
       uses: arduino/setup-task@v2
