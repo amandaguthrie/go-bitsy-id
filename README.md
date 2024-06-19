@@ -1,3 +1,6 @@
+> [!CAUTION]
+> Under development; not intended for production use
+
 # go-bitsy-id
 go-bitsy-id is a Go package that provides URL-friendly unique string generation for Go.
 
